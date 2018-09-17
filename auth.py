@@ -1,6 +1,8 @@
 import urlparse
 import oauth2 as oauth
-import creds.js
+import creds
+consumer_key = creds.apikeys['consumer_key']
+consumer_secret = creds.apikeys['consumer_secret']
 
 request_token_url = 'https://api.twitter.com/oauth/request_token'
 access_token_url = 'https://api.twitter.com/oauth/access_token'
