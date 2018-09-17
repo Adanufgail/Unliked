@@ -7,6 +7,7 @@ import time
 import os
 import twitter
 from dateutil.parser import parse
+import creds.js
 
 __author__ = "Koen Rouwhorst"
 __version__ = "0.1"
@@ -51,8 +52,8 @@ def main():
 
     args = parser.parse_args()
 
-    api = twitter.Api(consumer_key="",
-                      consumer_secret="",
+    api = twitter.Api(consumer_key,
+                      consumer_secret,
                       access_token_key="",
                       access_token_secret="")
 
