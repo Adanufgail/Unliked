@@ -12,7 +12,9 @@ This program is a further modification of melissa mcewen's modification of Quinc
 This, in an ideal environment, has the potential to unlike 720 tweets per day. It's SLOW. On purpose.
 Sources:
 https://medium.com/@melissamcewen/how-to-completely-delete-your-twitter-likes-5a41c35aefb8
+
 https://gist.github.com/melissamcewen/37125ee31615f3f7f53de47459053bf1#file-unlike-py
 
 https://medium.freecodecamp.org/how-to-delete-your-past-tweets-in-bulk-and-for-free-save-yourself-from-your-past-self-f8844cdbda2
+
 https://github.com/QuincyLarson/delete-tweets
