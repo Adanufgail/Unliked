@@ -17,25 +17,41 @@ consumer_key = creds.apikeys['consumer_key']
 consumer_secret = creds.apikeys['consumer_secret']
 access_token_key = creds.apikeys['access_key']
 access_token_secret = creds.apikeys['access_secret']
+
+debug = False
+
+
 def delete(api):
     with open("like2.js") as file:
         count = 0
+        skiplike = False
 
         for row in csv.reader(file):
             tweet_id = int(row[0])
-
             try:
-                print "Recreating like"
-                api.CreateFavorite(status_id=tweet_id)
-                print "Deleting like"
-                api.DestroyFavorite(status_id=tweet_id)
-                print tweet_id
-                print count
-                count += 1
-                time.sleep(1)
+                 print tweet_id
+                 if debug is True:
+                   print api.GetStatus(status_id=tweet_id)
+                   time.sleep(10)
+                 print "Recreating like"
+                 print api.CreateFavorite(status_id=tweet_id)
+                 time.sleep(60)
+                 print "Deleting like"
+                 print api.DestroyFavorite(status_id=tweet_id)
+                 print count
+                 count += 1
+                 time.sleep(60)
 
             except twitter.TwitterError, err:
-                print "Exception: %s\n" % err.message
+                 print "Exception: %s\n" % err.message
+                 print "Attempting to delete like"
+                 try:
+                   time.sleep(60)
+                   api.DestroyFavorite(status_id=tweet_id)
+                   print count
+                   count += 1
+                 except twitter.TwitterError, err:
+                    print "Exception: %s\n" % err.message
 
         print "Number of unliked tweets: %s\n" % count
 
@@ -44,17 +60,20 @@ def error(msg, exit_code=1):
     exit(exit_code)
 
 def main():
-    parser = argparse.ArgumentParser(description="Delete old tweets.")
+
+    print "Sleeping 60 to be safe"
+    time.sleep(60)
+    parser = argparse.ArgumentParser(description="Delete old likes.")
 
     args = parser.parse_args()
 
     api = twitter.Api(consumer_key,
                       consumer_secret,
                       access_token_key,
-                      access_token_secret)
+                      access_token_secret,
+                      sleep_on_rate_limit=True)
 
     delete(api)
-
 
 if __name__ == "__main__":
     main()
