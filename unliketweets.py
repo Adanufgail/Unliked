@@ -20,6 +20,12 @@ access_token_secret = creds.apikeys['access_secret']
 
 debug = False
 
+def countdown(t):
+    while t > 0:
+        sys.stdout.write('\r{}     '.format(t))
+        t -= 1
+        sys.stdout.flush()
+        time.sleep(1)
 
 def delete(api):
     with open("like2.js") as file:
@@ -35,18 +41,21 @@ def delete(api):
                    time.sleep(10)
                  print "Recreating like"
                  print api.CreateFavorite(status_id=tweet_id)
-                 time.sleep(60)
+                 countdown(60)
+                 #time.sleep(60)
                  print "Deleting like"
                  print api.DestroyFavorite(status_id=tweet_id)
                  print count
                  count += 1
-                 time.sleep(60)
+                 #time.sleep(60)
+                 countdown(60)
 
             except twitter.TwitterError, err:
                  print "Exception: %s\n" % err.message
                  print "Attempting to delete like"
                  try:
-                   time.sleep(60)
+                   countdown(60)
+                   #time.sleep(60)
                    api.DestroyFavorite(status_id=tweet_id)
                    print count
                    count += 1
@@ -62,7 +71,8 @@ def error(msg, exit_code=1):
 def main():
 
     print "Sleeping 60 to be safe"
-    time.sleep(60)
+    #time.sleep(60)
+    countdown(60)
     parser = argparse.ArgumentParser(description="Delete old likes.")
 
     args = parser.parse_args()
