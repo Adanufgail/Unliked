@@ -9,8 +9,8 @@ import twitter
 from dateutil.parser import parse
 import creds
 
-__author__ = "Koen Rouwhorst"
-__version__ = "0.1"
+__author__ = "Michael Lubert"
+__version__ = "1"
 
 import creds
 consumer_key = creds.apikeys['consumer_key']
