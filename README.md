@@ -1,3 +1,5 @@
+With API changes pushed by "New Twitter" this script no longer works. 
+
 # Unliked
 
 This program is a further modification of melissa mcewen's modification of Quincy Larson's tweet deletion Python script. This is a Python 2 script that imports a modified like.js (named like2.js) that contains one Tweet ID per line and nothing else. It should be noted that I've found conflicting information about Twitter's rate limiting, as some say the 15 per 15 minutes holds true, others say it could be more. I took the cautious approach and did the following workflow:
